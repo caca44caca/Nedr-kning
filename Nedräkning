@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Nedräkning till Uppstart Göteborg TÅ31/32</title>
+  <meta http-equiv="refresh" content="300"> <!-- Uppdaterar sidan var 5:e minut -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #002B45;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    #countdown {
+      font-size: 64px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nedräkning till Uppstart Göteborg TÅ31/32</h1>
+  <div id="countdown">Laddar...</div>
+
+  <script>
+    function updateCountdown() {
+      const targetDate = new Date("2025-06-16T05:00:00+02:00"); // Starttid kl. 05:00 svensk tid
+      const now = new Date();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "Nu har uppstarten börjat!";
+        return;
+      }
+
+      const dagar = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const timmar = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minuter = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const sekunder = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${dagar} dagar ${timmar} timmar ${minuter} minuter ${sekunder} sekunder`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
